@@ -1,0 +1,43 @@
+version: '3.8'
+
+# Khai báo mạng ngoài
+networks:
+  quickbite-net:
+    external: true
+
+services:
+  user-service:
+    image: quickbite-user-service:latest
+    container_name: quickbite-user
+    networks:
+      - quickbite-net
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+
+  restaurant-service:
+    image: quickbite-restaurant-service:latest
+    container_name: quickbite-restaurant
+    networks:
+      - quickbite-net
+    ports:
+      - "8082:8082"
+    restart: unless-stopped
+
+  order-service:
+    image: quickbite-order-service:latest
+    container_name: quickbite-order
+    networks:
+      - quickbite-net
+    ports:
+      - "8083:8083"
+    restart: unless-stopped
+
+  notification-service:
+    image: quickbite-notification-service:latest
+    container_name: quickbite-notification
+    networks:
+      - quickbite-net
+    ports:
+      - "8084:8084"
+    restart: unless-stopped
